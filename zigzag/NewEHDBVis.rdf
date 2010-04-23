@@ -1,0 +1,332 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns="http://www.meandre.org/ontology/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+  <data_connector_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/connector/13">
+    <connector_instance_data_port_target rdf:resource="meandre://seasr.org/components/data-mining/query-database/input/connection"/>
+    <connector_instance_target>
+      <instance_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/chrom-query">
+        <property_set>
+          <property rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/chrom-query/property/Query_Statement">
+            <value rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >SELECT * FROM CHROMOSOME</value>
+            <key rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Query_Statement</key>
+          </property>
+        </property_set>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >&lt;p&gt;Overview:&lt;br&gt;This compnent executes a query and returns the resultset. The user has three options. &lt;br&gt;First they may specify a path to a query file on the local filesystem using the Query_Path property. &lt;br&gt;If this property is not blank, the component will attempt to load from the path and execute the query stored in that file. &lt;br&gt;If the Query_Path property is blank, it will check the Query_Statement Property. &lt;br&gt;If this is not blank, it will attempt to execute the text in the Query_Statement property as an sql query. &lt;br&gt;Finally, if both properties are blank, it will present the user with a WebUI to enter a query manually</dc:description>
+        <instance_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >chrom-query</instance_name>
+        <instance_resource rdf:resource="meandre://seasr.org/components/data-mining/query-database"/>
+      </instance_configuration>
+    </connector_instance_target>
+    <connector_instance_data_port_source rdf:resource="meandre://seasr.org/components/data-mining/database-resultset-to-table/output/connection"/>
+    <connector_instance_source>
+      <instance_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/con-table">
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >&lt;p&gt;Overview:&lt;br&gt;Given a resultset object from an SQL query,create a table for data-mining. The table is a D2K Table object. Each column of the table is from a column in the resultset. Each row of the table correspons to a row from the resultset.</dc:description>
+        <instance_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >con-table</instance_name>
+        <instance_resource rdf:resource="meandre://seasr.org/components/data-mining/database-resultset-to-table"/>
+      </instance_configuration>
+    </connector_instance_source>
+  </data_connector_configuration>
+  <data_connector_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/connector/4">
+    <connector_instance_data_port_target rdf:resource="meandre://seasr.org/components/data-mining/database-resultset-to-table/input/resultset"/>
+    <connector_instance_target>
+      <instance_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/chrom-table">
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >&lt;p&gt;Overview:&lt;br&gt;Given a resultset object from an SQL query,create a table for data-mining. The table is a D2K Table object. Each column of the table is from a column in the resultset. Each row of the table correspons to a row from the resultset.</dc:description>
+        <instance_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >chrom-table</instance_name>
+        <instance_resource rdf:resource="meandre://seasr.org/components/data-mining/database-resultset-to-table"/>
+      </instance_configuration>
+    </connector_instance_target>
+    <connector_instance_data_port_source rdf:resource="meandre://seasr.org/components/data-mining/query-database/output/resultset"/>
+    <connector_instance_source rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/chrom-query"/>
+  </data_connector_configuration>
+  <data_connector_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/connector/6">
+    <connector_instance_data_port_target rdf:resource="meandre://seasr.org/components/data-mining/query-database/input/connection"/>
+    <connector_instance_target>
+      <instance_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/cen-query">
+        <property_set>
+          <property rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/cen-query/property/Query_Statement">
+            <value rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >SELECT * FROM CEN_TEL</value>
+            <key rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Query_Statement</key>
+          </property>
+        </property_set>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >&lt;p&gt;Overview:&lt;br&gt;This compnent executes a query and returns the resultset. The user has three options. &lt;br&gt;First they may specify a path to a query file on the local filesystem using the Query_Path property. &lt;br&gt;If this property is not blank, the component will attempt to load from the path and execute the query stored in that file. &lt;br&gt;If the Query_Path property is blank, it will check the Query_Statement Property. &lt;br&gt;If this is not blank, it will attempt to execute the text in the Query_Statement property as an sql query. &lt;br&gt;Finally, if both properties are blank, it will present the user with a WebUI to enter a query manually</dc:description>
+        <instance_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >cen-query</instance_name>
+        <instance_resource rdf:resource="meandre://seasr.org/components/data-mining/query-database"/>
+      </instance_configuration>
+    </connector_instance_target>
+    <connector_instance_data_port_source rdf:resource="meandre://seasr.org/components/data-mining/database-resultset-to-table/output/connection"/>
+    <connector_instance_source rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/chrom-table"/>
+  </data_connector_configuration>
+  <flow_component rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/">
+    <components_instances>
+      <instance_set rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/components/set">
+        <executable_component_instance>
+          <instance_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/prefs-query">
+            <property_set>
+              <property rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/prefs-query/property/Query_Statement">
+                <value rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >SELECT * FROM EH_REF_GEN_PREFS</value>
+                <key rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Query_Statement</key>
+              </property>
+            </property_set>
+            <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >&lt;p&gt;Overview:&lt;br&gt;This compnent executes a query and returns the resultset. The user has three options. &lt;br&gt;First they may specify a path to a query file on the local filesystem using the Query_Path property. &lt;br&gt;If this property is not blank, the component will attempt to load from the path and execute the query stored in that file. &lt;br&gt;If the Query_Path property is blank, it will check the Query_Statement Property. &lt;br&gt;If this is not blank, it will attempt to execute the text in the Query_Statement property as an sql query. &lt;br&gt;Finally, if both properties are blank, it will present the user with a WebUI to enter a query manually</dc:description>
+            <instance_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >prefs-query</instance_name>
+            <instance_resource rdf:resource="meandre://seasr.org/components/data-mining/query-database"/>
+          </instance_configuration>
+        </executable_component_instance>
+        <executable_component_instance>
+          <instance_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/cen-table">
+            <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >&lt;p&gt;Overview:&lt;br&gt;Given a resultset object from an SQL query,create a table for data-mining. The table is a D2K Table object. Each column of the table is from a column in the resultset. Each row of the table correspons to a row from the resultset.</dc:description>
+            <instance_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >cen-table</instance_name>
+            <instance_resource rdf:resource="meandre://seasr.org/components/data-mining/database-resultset-to-table"/>
+          </instance_configuration>
+        </executable_component_instance>
+        <executable_component_instance rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/chrom-query"/>
+        <executable_component_instance rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/cen-query"/>
+        <executable_component_instance>
+          <instance_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/prefs-table">
+            <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >&lt;p&gt;Overview:&lt;br&gt;Given a resultset object from an SQL query,create a table for data-mining. The table is a D2K Table object. Each column of the table is from a column in the resultset. Each row of the table correspons to a row from the resultset.</dc:description>
+            <instance_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >prefs-table</instance_name>
+            <instance_resource rdf:resource="meandre://seasr.org/components/data-mining/database-resultset-to-table"/>
+          </instance_configuration>
+        </executable_component_instance>
+        <executable_component_instance>
+          <instance_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/vis">
+            <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >This module provides a visualizer for Evolution Highway.</dc:description>
+            <instance_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >vis</instance_name>
+            <instance_resource rdf:resource="meandre://seasr.org/components/evolutionhighwayvisualizer"/>
+          </instance_configuration>
+        </executable_component_instance>
+        <executable_component_instance>
+          <instance_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/anc-table">
+            <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >&lt;p&gt;Overview:&lt;br&gt;Given a resultset object from an SQL query,create a table for data-mining. The table is a D2K Table object. Each column of the table is from a column in the resultset. Each row of the table correspons to a row from the resultset.</dc:description>
+            <instance_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >anc-table</instance_name>
+            <instance_resource rdf:resource="meandre://seasr.org/components/data-mining/database-resultset-to-table"/>
+          </instance_configuration>
+        </executable_component_instance>
+        <executable_component_instance rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/con-table"/>
+        <executable_component_instance>
+          <instance_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/connectdb">
+            <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Open an oracle connection to the EH database</dc:description>
+            <instance_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >connectdb</instance_name>
+            <instance_resource rdf:resource="meandre://seasr.org/components/ehconnect"/>
+          </instance_configuration>
+        </executable_component_instance>
+        <executable_component_instance>
+          <instance_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/con-query">
+            <property_set>
+              <property rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/con-query/property/Query_Statement">
+                <value rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >SELECT * FROM CONSENSUS</value>
+                <key rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Query_Statement</key>
+              </property>
+            </property_set>
+            <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >&lt;p&gt;Overview:&lt;br&gt;This compnent executes a query and returns the resultset. The user has three options. &lt;br&gt;First they may specify a path to a query file on the local filesystem using the Query_Path property. &lt;br&gt;If this property is not blank, the component will attempt to load from the path and execute the query stored in that file. &lt;br&gt;If the Query_Path property is blank, it will check the Query_Statement Property. &lt;br&gt;If this is not blank, it will attempt to execute the text in the Query_Statement property as an sql query. &lt;br&gt;Finally, if both properties are blank, it will present the user with a WebUI to enter a query manually</dc:description>
+            <instance_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >con-query</instance_name>
+            <instance_resource rdf:resource="meandre://seasr.org/components/data-mining/query-database"/>
+          </instance_configuration>
+        </executable_component_instance>
+        <executable_component_instance rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/chrom-table"/>
+        <executable_component_instance>
+          <instance_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/anc-query">
+            <property_set>
+              <property rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/anc-query/property/Query_Statement">
+                <value rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >SELECT * FROM ANCESTRAL</value>
+                <key rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Query_Statement</key>
+              </property>
+            </property_set>
+            <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >&lt;p&gt;Overview:&lt;br&gt;This compnent executes a query and returns the resultset. The user has three options. &lt;br&gt;First they may specify a path to a query file on the local filesystem using the Query_Path property. &lt;br&gt;If this property is not blank, the component will attempt to load from the path and execute the query stored in that file. &lt;br&gt;If the Query_Path property is blank, it will check the Query_Statement Property. &lt;br&gt;If this is not blank, it will attempt to execute the text in the Query_Statement property as an sql query. &lt;br&gt;Finally, if both properties are blank, it will present the user with a WebUI to enter a query manually</dc:description>
+            <instance_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >anc-query</instance_name>
+            <instance_resource rdf:resource="meandre://seasr.org/components/data-mining/query-database"/>
+          </instance_configuration>
+        </executable_component_instance>
+      </instance_set>
+    </components_instances>
+    <connectors>
+      <connector_set rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/connector/set">
+        <data_connector>
+          <data_connector_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/connector/5">
+            <connector_instance_data_port_target rdf:resource="meandre://seasr.org/components/data-mining/database-resultset-to-table/input/connection"/>
+            <connector_instance_target rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/prefs-table"/>
+            <connector_instance_data_port_source rdf:resource="meandre://seasr.org/components/data-mining/query-database/output/connection"/>
+            <connector_instance_source rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/prefs-query"/>
+          </data_connector_configuration>
+        </data_connector>
+        <data_connector>
+          <data_connector_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/connector/8">
+            <connector_instance_data_port_target rdf:resource="meandre://seasr.org/components/data-mining/database-resultset-to-table/input/resultset"/>
+            <connector_instance_target rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/anc-table"/>
+            <connector_instance_data_port_source rdf:resource="meandre://seasr.org/components/data-mining/query-database/output/resultset"/>
+            <connector_instance_source rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/anc-query"/>
+          </data_connector_configuration>
+        </data_connector>
+        <data_connector rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/connector/13"/>
+        <data_connector>
+          <data_connector_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/connector/1">
+            <connector_instance_data_port_target rdf:resource="meandre://seasr.org/components/data-mining/database-resultset-to-table/input/resultset"/>
+            <connector_instance_target rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/prefs-table"/>
+            <connector_instance_data_port_source rdf:resource="meandre://seasr.org/components/data-mining/query-database/output/resultset"/>
+            <connector_instance_source rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/prefs-query"/>
+          </data_connector_configuration>
+        </data_connector>
+        <data_connector rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/connector/4"/>
+        <data_connector>
+          <data_connector_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/connector/18">
+            <connector_instance_data_port_target rdf:resource="meandre://seasr.org/components/evolutionhighwayvisualizer/input/ancestral-overlay-table"/>
+            <connector_instance_target rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/vis"/>
+            <connector_instance_data_port_source rdf:resource="meandre://seasr.org/components/data-mining/database-resultset-to-table/output/table"/>
+            <connector_instance_source rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/anc-table"/>
+          </data_connector_configuration>
+        </data_connector>
+        <data_connector>
+          <data_connector_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/connector/9">
+            <connector_instance_data_port_target rdf:resource="meandre://seasr.org/components/data-mining/query-database/input/connection"/>
+            <connector_instance_target rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/prefs-query"/>
+            <connector_instance_data_port_source rdf:resource="meandre://seasr.org/components/data-mining/database-resultset-to-table/output/connection"/>
+            <connector_instance_source rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/anc-table"/>
+          </data_connector_configuration>
+        </data_connector>
+        <data_connector>
+          <data_connector_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/connector/17">
+            <connector_instance_data_port_target rdf:resource="meandre://seasr.org/components/evolutionhighwayvisualizer/input/input-build-table"/>
+            <connector_instance_target rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/vis"/>
+            <connector_instance_data_port_source rdf:resource="meandre://seasr.org/components/data-mining/database-resultset-to-table/output/table"/>
+            <connector_instance_source rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/prefs-table"/>
+          </data_connector_configuration>
+        </data_connector>
+        <data_connector>
+          <data_connector_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/connector/7">
+            <connector_instance_data_port_target rdf:resource="meandre://seasr.org/components/data-mining/query-database/input/connection"/>
+            <connector_instance_target rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/anc-query"/>
+            <connector_instance_data_port_source rdf:resource="meandre://seasr.org/components/data-mining/database-resultset-to-table/output/connection"/>
+            <connector_instance_source rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/cen-table"/>
+          </data_connector_configuration>
+        </data_connector>
+        <data_connector>
+          <data_connector_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/connector/3">
+            <connector_instance_data_port_target rdf:resource="meandre://seasr.org/components/data-mining/query-database/input/connection"/>
+            <connector_instance_target rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/con-query"/>
+            <connector_instance_data_port_source rdf:resource="meandre://seasr.org/components/ehconnect/output/connection"/>
+            <connector_instance_source rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/connectdb"/>
+          </data_connector_configuration>
+        </data_connector>
+        <data_connector>
+          <data_connector_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/connector/12">
+            <connector_instance_data_port_target rdf:resource="meandre://seasr.org/components/evolutionhighwayvisualizer/input/chromosome-table"/>
+            <connector_instance_target rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/vis"/>
+            <connector_instance_data_port_source rdf:resource="meandre://seasr.org/components/data-mining/database-resultset-to-table/output/table"/>
+            <connector_instance_source rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/chrom-table"/>
+          </data_connector_configuration>
+        </data_connector>
+        <data_connector>
+          <data_connector_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/connector/10">
+            <connector_instance_data_port_target rdf:resource="meandre://seasr.org/components/data-mining/database-resultset-to-table/input/connection"/>
+            <connector_instance_target rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/chrom-table"/>
+            <connector_instance_data_port_source rdf:resource="meandre://seasr.org/components/data-mining/query-database/output/connection"/>
+            <connector_instance_source rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/chrom-query"/>
+          </data_connector_configuration>
+        </data_connector>
+        <data_connector>
+          <data_connector_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/connector/11">
+            <connector_instance_data_port_target rdf:resource="meandre://seasr.org/components/evolutionhighwayvisualizer/input/centromere-telomere-overlay-table"/>
+            <connector_instance_target rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/vis"/>
+            <connector_instance_data_port_source rdf:resource="meandre://seasr.org/components/data-mining/database-resultset-to-table/output/table"/>
+            <connector_instance_source rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/cen-table"/>
+          </data_connector_configuration>
+        </data_connector>
+        <data_connector>
+          <data_connector_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/connector/16">
+            <connector_instance_data_port_target rdf:resource="meandre://seasr.org/components/data-mining/database-resultset-to-table/input/connection"/>
+            <connector_instance_target rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/anc-table"/>
+            <connector_instance_data_port_source rdf:resource="meandre://seasr.org/components/data-mining/query-database/output/connection"/>
+            <connector_instance_source rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/anc-query"/>
+          </data_connector_configuration>
+        </data_connector>
+        <data_connector>
+          <data_connector_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/connector/14">
+            <connector_instance_data_port_target rdf:resource="meandre://seasr.org/components/data-mining/database-resultset-to-table/input/connection"/>
+            <connector_instance_target rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/con-table"/>
+            <connector_instance_data_port_source rdf:resource="meandre://seasr.org/components/data-mining/query-database/output/connection"/>
+            <connector_instance_source rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/con-query"/>
+          </data_connector_configuration>
+        </data_connector>
+        <data_connector>
+          <data_connector_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/connector/15">
+            <connector_instance_data_port_target rdf:resource="meandre://seasr.org/components/data-mining/database-resultset-to-table/input/connection"/>
+            <connector_instance_target rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/cen-table"/>
+            <connector_instance_data_port_source rdf:resource="meandre://seasr.org/components/data-mining/query-database/output/connection"/>
+            <connector_instance_source rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/cen-query"/>
+          </data_connector_configuration>
+        </data_connector>
+        <data_connector rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/connector/6"/>
+        <data_connector>
+          <data_connector_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/connector/2">
+            <connector_instance_data_port_target rdf:resource="meandre://seasr.org/components/data-mining/database-resultset-to-table/input/resultset"/>
+            <connector_instance_target rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/cen-table"/>
+            <connector_instance_data_port_source rdf:resource="meandre://seasr.org/components/data-mining/query-database/output/resultset"/>
+            <connector_instance_source rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/cen-query"/>
+          </data_connector_configuration>
+        </data_connector>
+        <data_connector>
+          <data_connector_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/connector/19">
+            <connector_instance_data_port_target rdf:resource="meandre://seasr.org/components/evolutionhighwayvisualizer/input/consensus-table"/>
+            <connector_instance_target rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/vis"/>
+            <connector_instance_data_port_source rdf:resource="meandre://seasr.org/components/data-mining/database-resultset-to-table/output/table"/>
+            <connector_instance_source rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/con-table"/>
+          </data_connector_configuration>
+        </data_connector>
+        <data_connector>
+          <data_connector_configuration rdf:about="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/connector/0">
+            <connector_instance_data_port_target rdf:resource="meandre://seasr.org/components/data-mining/database-resultset-to-table/input/resultset"/>
+            <connector_instance_target rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/con-table"/>
+            <connector_instance_data_port_source rdf:resource="meandre://seasr.org/components/data-mining/query-database/output/resultset"/>
+            <connector_instance_source rdf:resource="meandre://seasr.org/zigzag/1265834835634/8565373092538111823/flow/NewEHDBVis-rdf/instance/con-query"/>
+          </data_connector_configuration>
+        </data_connector>
+      </connector_set>
+    </connectors>
+    <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2010-02-10T20:33:14</dc:date>
+    <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ZigZag compiler</dc:creator>
+    <dc:rights rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >NCSA/UofI open source license</dc:rights>
+    <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Automatically compiled from ZigZag file NewEHDBVis.rdf</dc:description>
+    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >NewEHDBVis.rdf</name>
+  </flow_component>
+</rdf:RDF>

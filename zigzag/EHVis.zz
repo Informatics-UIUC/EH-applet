@@ -1,0 +1,66 @@
+#
+# This flow creates the Evolution Highway Visualization
+#
+# @author Loretta Auvil
+# @date September 19, 2008
+#
+# @file: EHVis.zz
+#
+#
+# Imports the three required components and creates the component aliases
+#
+#import <http://localhost:1714/services/repository/dump.rdf>
+#import <file:///Users/lauvil/Desktop/ehdump.rdf>
+
+import <file:///tmp/ncsa/evolutionhighway/components/EvolutionHighwayVisualizer.rdf>
+import <file:///tmp/org/meandre/components/io/datasource/CloseDB.rdf>
+import <file:///tmp/org/meandre/components/io/datasource/ConnectionDB.rdf>
+import <file:///tmp/org/meandre/components/io/datasource/QueryDB.rdf>
+
+alias <meandre://seasr.org/components/evolutionhighwayvisualizer> as EHVIS
+alias <meandre://seasr.org/components/input-url-or-path> as INPUT-URL
+alias <meandre://seasr.org/components/create-delimited-file-parser> as PARSER
+alias <meandre://seasr.org/components/parse-file-to-table> as PARSE-FILE-TO-TABLE
+
+alias <meandre://seasr.org/components/closedb> as CLOSEDB
+alias <meandre://seasr.org/components/connectiondb> as CONNECTIONDB
+alias <meandre://seasr.org/components/querydb> as QUERYDB
+
+#
+# Creates four instances for the flow
+#	
+input_ancTable, parse_ancTable, table_ancTable =INPUT-URL(), PARSER(), PARSE-FILE-TO-TABLE()
+input_cenTable, parse_cenTable, table_cenTable =INPUT-URL(), PARSER(), PARSE-FILE-TO-TABLE()
+input_chrTable, parse_chrTable, table_chrTable =INPUT-URL(), PARSER(), PARSE-FILE-TO-TABLE()
+input_conTable, parse_conTable, table_conTable =INPUT-URL(), PARSER(), PARSE-FILE-TO-TABLE()
+input_buildTable, parse_buildTable, table_buildTable =INPUT-URL(), PARSER(), PARSE-FILE-TO-TABLE()
+vis = EHVIS()		
+#
+# Sets up the properties of the instances
+#
+input_ancTable.file_url = "published_resource/res/ancestral_HSA.data"
+input_buildTable.file_url = "published_resource/res/build.data"
+input_cenTable.file_url = "published_resource/res/cen_tel_HSA.data"
+input_chrTable.file_url = "published_resource/res/chromosome_HSA_MMU.data"
+input_conTable.file_url = "published_resource/res/consensus_HSA_MMU.data"
+#
+# Describes the data-intensive flow
+#
+@input_anc  = input_ancTable()
+@input_build = input_buildTable() 
+@input_cen = input_cenTable() 
+@input_chr = input_chrTable() 
+@input_con = input_conTable()
+@parser_anc = parse_ancTable(webdavClient: input_anc.webdavClient; url: input_anc.url)
+@parser_build = parse_buildTable(webdavClient: input_build.webdavClient; url: input_build.url)
+@parser_cen = parse_cenTable(webdavClient: input_cen.webdavClient; url: input_cen.url)
+@parser_chr = parse_chrTable(webdavClient: input_chr.webdavClient; url: input_chr.url)
+@parser_con = parse_conTable(webdavClient: input_con.webdavClient; url: input_con.url)
+@table_anc = table_ancTable(parser: parser_anc.parser)
+@table_build = table_buildTable(parser: parser_build.parser)
+@table_cen = table_cenTable(parser: parser_cen.parser)
+@table_chr = table_chrTable(parser: parser_chr.parser)
+@table_con = table_conTable(parser: parser_con.parser)
+vis(Chromosome-Table: table_chr.table; Input-Build-Table: table_build.table; 
+  Centromere-Telomere-Overlay-Table: table_cen.table; Ancestral-Overlay-Table: table_anc.table;
+  Consensus-Table: table_con.table)

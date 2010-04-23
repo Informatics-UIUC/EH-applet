@@ -1,0 +1,62 @@
+import <http://demo.seasr.org:1714/public/services/repository.ttl>
+#import <http://repository.seasr.org/Meandre/Locations/1.4.5/Data-Mining-Components/repository_components.ttl>
+
+import <file:///Users/lauvil/ncsa/evolutionhighway/components/EvolutionHighwayVisualizer.rdf>
+
+alias <meandre://seasr.org/components/connect-to-database> as CONNECTDB
+alias <meandre://seasr.org/components/query-database> as QUERYDB
+alias <meandre://seasr.org/components/database-resultset-to-table> as RSTOTABLE
+alias <meandre://seasr.org/components/evolutionhighwayvisualizer> as EHVIS
+alias <meandre://seasr.org/components/table-viewer> as TABLEVIEWER
+
+alias <meandre://seasr.org/components/initialize-jndi-datsources> as JNDI
+alias <meandre://seasr.org/components/list-database-resultset> as LISTDBRESULTSET
+#
+# Creates instances for the flow
+#
+db_jndi = JNDI()
+connectdb = CONNECTDB()
+con-query, con-table = QUERYDB(),RSTOTABLE()
+chrom-query, chrom-table = QUERYDB(),RSTOTABLE()
+cen-query, cen-table = QUERYDB(),RSTOTABLE()
+anc-query, anc-table = QUERYDB(),RSTOTABLE()
+prefs-query, prefs-table = QUERYDB(),RSTOTABLE()
+
+vis = EHVIS()
+
+t-viewer = TABLEVIEWER()
+
+#
+# Setting property values
+#
+db_jndi.Xml_Location="eh.xml"
+con-query.Query_Statement = "SELECT * FROM CONSENSUS"
+chrom-query.Query_Statement = "SELECT * FROM CHROMOSOME"
+cen-query.Query_Statement = "SELECT * FROM CEN_TEL"
+anc-query.Query_Statement = "SELECT * FROM ANCESTRAL"
+prefs-query.Query_Statement = "SELECT * FROM EH_REF_GEN_PREFS"
+
+#
+# Creating connections
+#
+@db_init=db_jndi()
+@connect = connectdb()
+@con-query-res = con-query(Connection:connect.Connection)
+@con-table-res = con-table(ResultSet:con-query-res.ResultSet;Connection:con-query-res.Connection)
+@chrom-query-res = chrom-query(Connection:con-table-res.Connection)
+@chrom-table-res = chrom-table(ResultSet:chrom-query-res.ResultSet;Connection:chrom-query-res.Connection)
+@cen-query-res = cen-query(Connection:chrom-table-res.Connection)
+@cen-table-res = cen-table(ResultSet:cen-query-res.ResultSet;Connection:cen-query-res.Connection)
+@anc-query-res = anc-query(Connection:cen-table-res.Connection)
+@anc-table-res = anc-table(ResultSet:anc-query-res.ResultSet;Connection:anc-query-res.Connection)
+@prefs-query-res = prefs-query(Connection:anc-table-res.Connection)
+@prefs-table-res = prefs-table(ResultSet:prefs-query-res.ResultSet;Connection:prefs-query-res.Connection)
+
+vis(Chromosome-Table: chrom-table-res.table; Input-Build-Table: prefs-table-res.table; 
+  Centromere-Telomere-Overlay-Table: cen-table-res.table; Ancestral-Overlay-Table: anc-table-res.table;
+  Consensus-Table: con-table-res.table)
+
+#t-viewer(table: prefs-table-res.table)
+
+
+

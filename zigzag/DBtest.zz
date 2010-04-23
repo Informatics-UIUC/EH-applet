@@ -1,0 +1,28 @@
+#import <file:///C:/Eclipise_Meandre/Data-Mining-SVN/rdf-resources/InitJNDI.rdf>
+#import <file:///C:/Eclipise_Meandre/Data-Mining-SVN/rdf-resources/ConnectDB.rdf>
+#import <file:///c:/Eclipise_Meandre/Data-Mining-SVN/rdf-resources/QueryDB.rdf>
+#import <file:///c:/Eclipise_Meandre/Data-Mining-SVN/rdf-resources/ListDBResults.rdf>
+
+import <http://demo.seasr.org:1714/public/services/repository.ttl>
+ 
+
+alias <meandre://seasr.org/components/initialize-jndi-datsources> as JNDI
+alias <meandre://seasr.org/components/connect-to-database> as CONN
+alias <meandre://seasr.org/components/query-database> as QUERY
+alias <meandre://seasr.org/components/list-database-resultset> as LISTDBRESULTSET
+ 
+db_jndi = JNDI()
+db_connection = CONN()
+db_query = QUERY()
+db_list_resultset = LISTDBRESULTSET()
+ 
+db_jndi.Xml_Location="http://localhost/~lauvil/eh.xml"
+ 
+# db_connection.Xml_Location="eh.xml"
+db_connection.JNDI_Name="MySQLDB"
+db_query.Query_Statement="SELECT * FROM EH_REF_GEN_PREFS"
+ 
+@db_init=db_jndi()
+@db_c=db_connection()
+@db_q=db_query(Connection:db_c.Connection)
+@db_l=db_list_resultset(ResultSet:db_q.ResultSet)
