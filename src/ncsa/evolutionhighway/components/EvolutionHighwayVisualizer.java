@@ -46,7 +46,7 @@ baseURL="meandre://seasr.org/components/"
 
 @ComponentNature(type="applet",
         extClass=ncsa.evolutionhighway.components.support.EvolutionHighwayApplet.class,
-        dependency={"piccolo-1.2.1.jar", "piccolox-1.2.1.jar", "foundry-datatypes.jar", "foundry-support.jar", "foundry-commons.jar", "trove-2.0.3.jar", "eh_icons.jar"},
+        dependency={"hgTables.jar","piccolo-1.2.1.jar", "piccolox-1.2.1.jar", "foundry-datatypes.jar", "foundry-support.jar", "foundry-commons.jar", "trove-2.0.3.jar", "eh_icons.jar"},
         resources={"hsadown.gif", "hsahash.gif", "hsaright.gif"}
 )
 
@@ -90,12 +90,11 @@ public class EvolutionHighwayVisualizer implements ExecutableComponent, WebUIFra
       *
       * @param ccp The component context properties
       */
-     public void initialize ( ComponentContextProperties ccp ) {
-    	 //File file = MeandreJarFileReaderUtil.findAndInstallFileResource(arg0, arg1, arg2);
-    	 console = ccp.getOutputConsole();
      public void initialize ( ComponentContextProperties ccp ) throws ComponentContextException {
+         console = ccp.getOutputConsole();
+
          String sResDir = ccp.getPublicResourcesDirectory()+File.separator+"contexts"+File.separator+"java"+File.separator;
-         sTablesDir = ccp.getPublicResourcesDirectory() + File.separator + "EH" + File.separator;
+         String sTablesDir = ccp.getPublicResourcesDirectory() + File.separator + "EH" + File.separator;
 
          File depJar = new File(sResDir + "hgTables.jar");
          if (!depJar.exists())
@@ -244,8 +243,7 @@ public class EvolutionHighwayVisualizer implements ExecutableComponent, WebUIFra
       * @param response The response object
       * @throws WebUIException Some problem encountered during execution and something went wrong
       */
-     public void emptyRequest(HttpServletResponse response) throws
-             WebUIException {
+     public void emptyRequest(HttpServletResponse response) throws WebUIException {
          try {
              response.getWriter().println(getViz());
          } catch (IOException e) {
@@ -290,14 +288,14 @@ public class EvolutionHighwayVisualizer implements ExecutableComponent, WebUIFra
       */
      public void handle(HttpServletRequest request, HttpServletResponse response) throws
              WebUIException {
-                  
+
          console.println("handle"+ response);
          String sDone = request.getParameter("done");
          String theApplet = request.getParameter("applet");
 
          if (sDone != null)
-             done=true;
-             
+             _done=true;
+
 		 else if (theApplet != null)
          //if (request.getParameterMap().isEmpty()) {
              //emptyRequest(response);
@@ -318,47 +316,9 @@ public class EvolutionHighwayVisualizer implements ExecutableComponent, WebUIFra
 	         } catch (Exception ex) {
 	             throw new WebUIException(ex);
 	         }
-         }
+
          else
              emptyRequest(response);
-         /*if (request.getParameter("done") != null) {
-             _done = true;
-             try {
-                 response.getWriter().println("<html><head><meta http-equiv='REFRESH' content='1;url=/'></head><body></body></html>");
-             }
-             catch (IOException e) {
-                 throw new WebUIException(e);
-             }
-         }
-
-         console.println("exiting handle");*/
      }
-     /*
-         String sDone = request.getParameter("done");
-         String theApplet = request.getParameter("applet");
 
-         if (sDone != null)
-             sem.release();
-         else if (theApplet != null)
-
-             try {
-                 ObjectOutputStream out = new ObjectOutputStream(response.getOutputStream());
-
-                 out.writeObject(ancTable);
-                 out.writeObject(cenTable);
-                 out.writeObject(chrTable);
-                 out.writeObject(conTable);
-                 out.writeObject(buildTable);
-
-                 out.writeObject(genomeList);
-                 out.writeObject(featureList);
-                 out.writeObject(tableList);
-                 out.flush();
-                 out.close();
-             } catch (Exception ex) {
-                 throw new WebUIException(ex);
-             }
-         else
-             emptyRequest(response);
-     }*/
 }

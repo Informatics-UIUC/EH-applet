@@ -19,7 +19,7 @@ import <http://localhost:1714/public/services/repository.ttl>
 #import <file:///Users/lauvil/descriptors/QueryDB.rdf>
 #import <file:///Users/lauvil/descriptors/EHConnect.rdf>
 #import <file:///Users/lauvil/descriptors/EvolutionHighwayVisualizer.rdf>
-#import <file:///Users/lauvil/descriptors/RStoTable.rdf>
+#import <file:///Users/lauvil/descriptors/DatabaseResultSetToTable.rdf>
 #import <file:///Users/lauvil/descriptors/CreateDelimitedFileParser.rdf>
 #import <file:///Users/lauvil/descriptors/BasicTableFactoryInjector.rdf>
 #import <file:///Users/lauvil/descriptors/ParseFileToTable.rdf>
